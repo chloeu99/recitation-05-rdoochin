@@ -22,7 +22,7 @@ The Span is O(n).
 
 - **6)**
 The work is O(n) because all of the functions used in supersort have a work of O(n).
-The span is O(log^2(n)), we get this from adding O(logn) + O(n) +O(n).
+The span is O(n), we get this from adding O(n) + O(n) +O(n).
 
 
 
