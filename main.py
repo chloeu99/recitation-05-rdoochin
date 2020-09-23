@@ -17,7 +17,7 @@ def supersort(a, k):
     return construct_output(a, positions)
 
 def count_values(a, k):
-    """
+	"""
     Params:
       a.....input list
       k.....maximum value in a
@@ -28,16 +28,25 @@ def count_values(a, k):
       
     >>> count_values([2,2,1,0,1,0,1,3], 3)
     [2, 3, 2, 1]
-    """
-    ###TODO
-    pass
-
+  """
+	dict = defaultdict(int)
+	output = []
+	for i in a:
+			dict[i] += 1
+	size = range(k+1)
+	for num in size:
+		if num in dict:
+			output.append(dict[num])
+		else:
+			output.append(0)
+	return output
+      
 def test_count_values():
-    assert count_values([2,2,1,0,1,0,1,3], 3) == [2, 3, 2, 1]
+  assert count_values([2,2,1,0,1,0,1,3], 3) == [2, 3, 2, 1]
     
 def get_positions(counts):
-    """
-    Params:
+	"""
+  Params:
       counts...counts of each value in the input
     Returns:
       a list p where p[i] indicates the location of the first
@@ -46,14 +55,19 @@ def get_positions(counts):
     >>> get_positions([2, 3, 2, 1])
     [0, 2, 5, 7]    
     """
-    ###TODO
-    pass
+	output=[]
+	for i in range(len(counts)):
+		if i == 0:
+			output.append(0)
+		else:
+			output.append(output[i-1]+counts[i-1])
+	return output
     
 def test_get_positions():
     assert get_positions([2, 3, 2, 1]) == [0, 2, 5, 7]
     
 def construct_output(a, positions):
-    """
+	"""
     Construct the final, sorted output.
 
     Params:
@@ -66,8 +80,13 @@ def construct_output(a, positions):
     >>> construct_output([2,2,1,0,1,0,1,3], [0, 2, 5, 7])
     [0,0,1,1,1,2,2,3]    
     """
-    ###TODO
-    pass
+  ###TODO
+	# Creates a list the length of the return array.
+	output = [0]*len(a)
+	for i in a:
+		output[positions[i]] = i
+		positions[i]+= 1
+	return output
 
 def test_construct_output():
     assert construct_output([2,2,1,0,1,0,1,3], [0, 2, 5, 7]) == [0,0,1,1,1,2,2,3]
@@ -85,12 +104,12 @@ def test_count_values_mr():
     assert count_values_mr([2,2,1,0,1,0,1,3], 3) == [2, 3, 2, 1]
 
 def count_map(value):
-    ###TODO
-    pass
+    return[(value, 1)]
 
 def count_reduce(group):
-    ###TODO
-    pass
+	###TODO
+	r = reduce(plus, 0, group[1])
+	return [group[0], r]
 
 
 # the below functions are provided for use above.
